@@ -104,4 +104,144 @@ $$
 T = \frac{1}{2}ml^2\omega^2
 $$
 
-and the second term represents its gravitational potential energy relative to the downward
+and the second term represents its gravitational potential energy relative to the downward equilibrium:
+
+$$
+U = mgl(1-\cos\theta)
+$$
+
+Therefore:
+
+$$
+V = T + U
+$$
+
+For the damped pendulum, mechanical energy is dissipated by the damping term. This makes the energy function useful for studying the stability of the downward equilibrium.
+
+---
+
+## Energy Boundary
+
+The program also calculates the energy associated with the upright equilibrium:
+
+$$
+\theta = \pi, \qquad \omega = 0
+$$
+
+Substituting this state into the Lyapunov function gives:
+
+$$
+V(\pi,0)
+=
+mgl(1-\cos\pi)
+$$
+
+Since:
+
+$$
+\cos\pi=-1
+$$
+
+the resulting energy level is:
+
+$$
+V(\pi,0)=2mgl
+$$
+
+The contour:
+
+$$
+V(\theta,\omega)=2mgl
+$$
+
+is plotted over the numerically simulated region of attraction.
+
+This provides a visual comparison between the behavior observed through numerical simulation and the boundary obtained from the energy-based Lyapunov analysis.
+
+---
+
+## Visualizations
+
+The MATLAB script generates several plots.
+
+<img width="1192" height="769" alt="image" src="https://github.com/user-attachments/assets/1a15e270-5293-46c4-9dfd-6e39e0b80a1f" />
+<img width="1174" height="762" alt="image" src="https://github.com/user-attachments/assets/0b8e3083-97fa-456d-8750-6bd5ba81e9aa" />
+<img width="1208" height="777" alt="image" src="https://github.com/user-attachments/assets/a9e5f985-13d3-4f34-887d-0fc773a5ecf0" />
+<img width="1224" height="804" alt="image" src="https://github.com/user-attachments/assets/27c7e69f-fd8a-48bc-8426-b2de18f32d18" />
+<img width="1236" height="792" alt="image" src="https://github.com/user-attachments/assets/91192d7e-ac6e-45d3-b17e-5542bc7f9a56" />
+
+
+### 1. Simulated Region of Attraction
+
+A colour map shows which combinations of initial angle and angular velocity converge to the downward equilibrium.
+
+The energy contour
+
+$$
+V(\theta,\omega)=2mgl
+$$
+
+is plotted on top of the simulated results for comparison.
+
+### 2. Pendulum Angle vs. Time
+
+The angle $\theta(t)$ is plotted over time for a sample initial condition.
+
+### 3. Angular Velocity vs. Time
+
+The angular velocity $\omega(t)$ is plotted over time.
+
+### 4. Phase Portrait
+
+The trajectory is plotted in the $(\theta,\omega)$ state space, providing a phase-plane representation of the pendulum's motion.
+
+### 5. Lyapunov Function vs. Time
+
+The value of
+
+$$
+V(\theta(t),\omega(t))
+$$
+
+is plotted over time to visualize how the pendulum's mechanical energy changes as damping dissipates energy from the system.
+
+---
+
+## Running the Simulation
+
+The project requires **MATLAB**.
+
+Run the main function using:
+
+```matlab
+main_Pendulum
+```
+
+The program will simulate the nonlinear pendulum and generate the region-of-attraction, state-response, phase-portrait, and Lyapunov-function plots.
+
+---
+
+## References
+
+**H. K. Khalil**
+*Nonlinear Systems*, 3rd Edition.
+Prentice Hall, 2002.
+
+**Russ Tedrake — MIT Underactuated Robotics**
+*Lyapunov Analysis*
+https://underactuated.mit.edu/lyapunov.html
+
+---
+
+## Notes
+
+The simulated region of attraction is a **numerical estimate**. Its appearance depends on factors such as:
+
+* Initial-condition grid resolution
+* Simulation duration
+* Numerical solver behavior
+* Selected convergence tolerance
+
+In this implementation, a trajectory is considered converged when both the final angle and angular velocity have magnitudes below `0.05`.
+
+The project is intended as an educational demonstration of how **numerical simulation, phase-plane analysis, and Lyapunov methods** can be combined to investigate the stability of a nonlinear dynamical system.
